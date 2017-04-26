@@ -7,6 +7,20 @@ class TopApps(WebAdapter):
     status = 0
     data = None
 
+    def __init__(self):
+        fields = [
+            'id INTEGER PRIMARY KEY',
+            'name TEXT',
+            'developer TEXT',
+            'rank INTEGER',
+            'url TEXT',
+            'created TEXT DEFAULT current_timestamp',
+            ]
+
+        db = DBAdapter()
+        db.create_table_if_not_exists('top_apps', fields)
+
+
     def harvest(self):
         if not self.load_data():
             print('Error loading data')
